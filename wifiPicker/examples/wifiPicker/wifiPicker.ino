@@ -1,5 +1,5 @@
 #include <WiFi.h>
-#include "wifiPicker.h"
+#include <wifiPicker.h>
 
 /****************************************************************
 SSID and PW for new network if no previously known network is 
@@ -15,7 +15,6 @@ void setup()
     ****************************************************************/
     Serial.begin(115200);
     Serial.println();
-    Serial.println("Attempting to connect to known network");
 
     /****************************************************************
     Turn debug information on
@@ -33,7 +32,7 @@ void setup()
     /****************************************************************
     If connection is successful, display IP address of ESP32
     ****************************************************************/
-    Serial.println("Connected! IP is: ");
+    Serial.println("IP ADDRESS IS:");
     Serial.println(WiFi.localIP());
 }
 void loop()

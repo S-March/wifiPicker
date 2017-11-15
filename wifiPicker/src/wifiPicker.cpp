@@ -55,12 +55,10 @@ bool attemptAutoConnect(void)
     // connect known network.
     if(!BOOT_INTO_AP_MODE_FLAG)
     {
-        debugPrint("ATTEMPTING TO CONNECT TO PREVIOUSLY KNOWN NETWORK");
         while (WiFi.status() != WL_CONNECTED) 
         {
             delay(500);
             counter++;
-            debugPrint(".");
             if(counter>=20)
             {
                 debugPrint("CAN NOT CONNECT TO NETWORK");
@@ -83,7 +81,6 @@ bool attemptManualConnect(const char* NEW_SSID, const char* NEW_PW)
     {
         delay(500);
         counter++;
-        debugPrint(".");
         if(counter>=20)
         {
             debugPrint("CAN NOT CONNECT TO NETWORK");
@@ -116,7 +113,6 @@ String wifiScan(void)
             wifiNetworkList += "\n";
             delay(10);
         }
-        debugPrint(wifiNetworkList);
     }
     
     return wifiNetworkList;
@@ -153,6 +149,7 @@ void handleWifiPickerNotFound()
 }
 bool wifiPicker(const char* AP_SSID, const char* AP_PW)
 {
+    debugPrint("ATTEMPTING TO CONNECT TO KNOWN NETWORK");
     if(attemptAutoConnect())
     {
         debugPrint("CONNNECTION ESTABLISHED");
@@ -162,15 +159,15 @@ bool wifiPicker(const char* AP_SSID, const char* AP_PW)
         //SCAN FOR NETWORKS
         NETWORK_LIST = wifiScan();
         
-    
         //CREAT ACCESS POINT
         WiFi.softAP(AP_SSID, AP_PW); 
         
         debugPrint(" "); 
-        debugPrint("CONNECT TO WIFIPICKER NETWORK");
-        debugPrint("NAVIGATE TO IP ADDRESS 1.1.1.1");
+        debugPrint("CONNECT TO:");
+        debugPrint(String(AP_SSID));
+        debugPrint("NAVIGATE TO IP ADDRESS 192.168.4.1");
         debugPrint("PICK A NETWORK FROM THE SCANNED LIST");
-        debugPrint("ENTER CREDENTIALS AND HIT SUBMIT TO CONNECT");
+        debugPrint("ENTER PASSWORD AND HIT OK TO CONNECT");
         debugPrint(" "); 
         
         //HANDLE WEB SERVER REQUESTS        
