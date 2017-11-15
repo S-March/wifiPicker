@@ -18,18 +18,18 @@ Download the zip and extract all the contents into your libraries folder. Make s
 ## To Use:
 Add the wifiPicker library to your project:
 
->~~~~
+~~~~
 #include "wifiPicker.h"
 ~~~~
 
 Add the following lines to the top of your code:
->~~~~
+~~~~
 const char* AP_SSID = "ACCESS_POINT_SSID";
 const char* AP_PW   = "ACCESS_POINT_PW";
 ~~~~
 
 And then lastly, add this in your setup:
->~~~~
+~~~~
 wifiPicker(AP_SSID,AP_PW);
 ~~~~
 
