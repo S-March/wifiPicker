@@ -55,8 +55,6 @@ bool attemptAutoConnect(void)
     // connect known network.
     if(!BOOT_INTO_AP_MODE_FLAG)
     {
-        // TODO: Change while to for and use as a 
-        // timout for attempting to connect
         debugPrint("ATTEMPTING TO CONNECT TO PREVIOUSLY KNOWN NETWORK");
         while (WiFi.status() != WL_CONNECTED) 
         {
@@ -80,8 +78,6 @@ bool attemptManualConnect(const char* NEW_SSID, const char* NEW_PW)
     bool BOOT_INTO_AP_MODE_FLAG = false;
     
     WiFi.begin(NEW_SSID,NEW_PW);
-    // TODO: Change while to for and use as a 
-    // timout for attempting to connect
     debugPrint("ATTEMPTING TO CONNECT TO NEW NETWORK WITH SSID:"+String(NEW_SSID)+" AND PW:"+String(NEW_PW));
     while (WiFi.status() != WL_CONNECTED) 
     {
@@ -157,11 +153,11 @@ void handleWifiPickerNotFound()
 }
 bool wifiPicker(const char* AP_SSID, const char* AP_PW)
 {
-//    if(attemptAutoConnect())
-//    {
-//        debugPrint("CONNNECTION ESTABLISHED");
-//    }
-//    else
+    if(attemptAutoConnect())
+    {
+        debugPrint("CONNNECTION ESTABLISHED");
+    }
+    else
     {        
         //SCAN FOR NETWORKS
         NETWORK_LIST = wifiScan();
